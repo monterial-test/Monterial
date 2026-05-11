@@ -79,7 +79,7 @@ export default function Footer() {
                                 </div>
                                 <div className="text-start">
                                     <div className="text-gray-500 text-xs md:text-sm mb-1 uppercase tracking-[0.2em] font-black">{item.label}</div>
-                                    <div className={`font-black text-white/90 truncate ${item.val.includes('@') ? 'text-sm md:text-base lg:text-lg' : 'text-lg md:text-2xl'}`} dir="ltr">
+                                    <div className={`font-black text-white/90 break-all ${item.val.includes('@') ? 'text-[10px] xs:text-xs md:text-base lg:text-lg' : 'text-lg md:text-2xl'}`} dir="ltr">
                                         {item.val}
                                     </div>
                                 </div>

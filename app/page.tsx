@@ -33,24 +33,24 @@ export default function Home() {
           </video>
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 relative z-20 text-center flex flex-col items-center">
-          <div className="mb-8 animate-in fade-in zoom-in-75 duration-1000">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-20 text-center flex flex-col items-center">
+          <div className="mb-6 md:mb-8 animate-in fade-in zoom-in-75 duration-1000">
             <Image
               src="/Logo.png"
               alt="Monterial Logo"
-              width={290}
-              height={290}
-              className="mx-auto"
+              width={220}
+              height={220}
+              className="mx-auto md:w-[290px]"
               priority
-              sizes="(max-width: 768px) 250px, 320px"
+              sizes="(max-width: 768px) 180px, 290px"
             />
           </div>
 
-          <div className="relative inline-block mb-6">
-            <h1 className="text-5xl md:text-8xl font-black text-white italic uppercase tracking-tighter leading-none">
+          <div className="relative inline-block mb-4 md:mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-8xl font-black text-white italic uppercase tracking-tighter leading-tight md:leading-none">
               {t("company_name")}
             </h1>
-            <svg className="absolute -bottom-6 left-0 w-full h-10 overflow-visible" viewBox="0 0 500 40" preserveAspectRatio="none">
+            <svg className="absolute -bottom-4 md:-bottom-6 left-0 w-full h-6 md:h-10 overflow-visible" viewBox="0 0 500 40" preserveAspectRatio="none">
               <path
                 d="M10,20 Q250,40 490,20"
                 fill="none"
@@ -62,15 +62,15 @@ export default function Home() {
             </svg>
           </div>
 
-          <p className="text-xl md:text-3xl font-black text-white uppercase tracking-[0.2em] mb-12 max-w-4xl animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-300">
+          <p className="text-base sm:text-lg md:text-3xl font-black text-white uppercase tracking-[0.1em] md:tracking-[0.2em] mb-8 md:mb-12 max-w-4xl animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-300">
             {t("hero_slogan")}
           </p>
 
-          <div className="flex flex-wrap justify-center gap-6 animate-in fade-in slide-in-from-bottom-16 duration-1000 delay-500">
-            <Link href="/projects" className="bg-red-600 hover:bg-red-700 text-white px-12 py-5 rounded-full font-black uppercase tracking-widest transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-red-600/40">
+          <div className="flex flex-col sm:flex-row justify-center gap-4 md:gap-6 animate-in fade-in slide-in-from-bottom-16 duration-1000 delay-500 w-full sm:w-auto px-4 sm:px-0">
+            <Link href="/projects" className="bg-red-600 hover:bg-red-700 text-white px-8 md:px-12 py-4 md:py-5 rounded-full font-black uppercase tracking-widest transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-red-600/40 text-sm md:text-base">
               {t("hero_btn_projects")}
             </Link>
-            <Link href="/services" className="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 px-12 py-5 rounded-full font-black uppercase tracking-widest transition-all">
+            <Link href="/services" className="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 px-8 md:px-12 py-4 md:py-5 rounded-full font-black uppercase tracking-widest transition-all text-sm md:text-base">
               {t("hero_btn_services")}
             </Link>
           </div>
@@ -95,18 +95,18 @@ export default function Home() {
 /* ─────────────────────────────────────────── */
 function SectionHeader({ title, light = false }: { title: string; light?: boolean }) {
   return (
-    <div className="text-center mb-16 group">
-      <div className="flex justify-center mb-4 transition-transform group-hover:scale-110 duration-500">
-        <svg width="48" height="36" viewBox="0 0 36 28" fill="none">
+    <div className="text-center mb-10 md:mb-16 group">
+      <div className="flex justify-center mb-3 md:mb-4 transition-transform group-hover:scale-110 duration-500">
+        <svg width="40" height="30" className="md:w-12 md:h-9" viewBox="0 0 36 28" fill="none">
           <rect x="0" y="4" width="10" height="20" rx="3" transform="rotate(-10 0 4)" fill={light ? "#fff" : "#222"} />
           <rect x="14" y="4" width="10" height="20" rx="3" transform="rotate(-10 14 4)" fill={light ? "#fff" : "#222"} />
         </svg>
       </div>
-      <div className="relative inline-block">
-        <h2 className={`text-4xl md:text-5xl font-black uppercase tracking-[0.2em] mb-4 ${light ? "text-white" : "text-slate-900"}`}>
+      <div className="relative inline-block px-4">
+        <h2 className={`text-2xl sm:text-3xl md:text-5xl font-black uppercase tracking-[0.1em] md:tracking-[0.2em] mb-2 md:mb-4 ${light ? "text-white" : "text-slate-900"}`}>
           {title}
         </h2>
-        <div className="w-full h-1 bg-red-600 rounded-full transition-all duration-700 group-hover:w-3/4 mx-auto" />
+        <div className="w-1/2 md:w-full h-1 bg-red-600 rounded-full transition-all duration-700 group-hover:w-3/4 mx-auto" />
       </div>
     </div>
   );
@@ -127,7 +127,7 @@ function HomeServicesSection() {
 
   return (
     <section
-      className="py-32 px-6 relative overflow-hidden"
+      className="py-16 md:py-32 px-4 md:px-6 relative overflow-hidden"
       style={{ background: "linear-gradient(135deg, #f0f0f0 0%, #f0f0f0 40%, #c41e3a 100%)" }}
     >
       {/* Decorative Background Elements */}
@@ -139,19 +139,19 @@ function HomeServicesSection() {
         <SectionHeader title={t("home_services_title")} />
 
         {/* 2×2 Grid */}
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-4 md:gap-8">
           {services.map((svc, i) => (
             <div
               key={i}
-              className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-10 flex flex-row items-start gap-8 shadow-xl border-2 border-slate-900/5 dark:border-white/5 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 group"
+              className="bg-white dark:bg-slate-900 rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-10 flex flex-row items-center md:items-start gap-4 md:gap-8 shadow-xl border-2 border-slate-900/5 dark:border-white/5 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 group"
             >
               {/* Number Badge */}
-              <div className="w-16 h-16 bg-red-600 rounded-2xl flex items-center justify-center shrink-0 shadow-2xl shadow-red-600/40 group-hover:rotate-12 transition-transform duration-500">
-                <span className="text-white font-black text-2xl">{svc.id}</span>
+              <div className="w-12 h-12 md:w-16 md:h-16 bg-red-600 rounded-xl md:rounded-2xl flex items-center justify-center shrink-0 shadow-2xl shadow-red-600/40 group-hover:rotate-12 transition-transform duration-500">
+                <span className="text-white font-black text-lg md:text-2xl">{svc.id}</span>
               </div>
               {/* Text */}
-              <div className="pt-2">
-                <p className="text-xl font-black text-slate-800 dark:text-white leading-tight group-hover:text-red-600 transition-colors">
+              <div className="pt-0 md:pt-2">
+                <p className="text-base md:text-xl font-black text-slate-800 dark:text-white leading-tight group-hover:text-red-600 transition-colors">
                   {t(svc.key)}
                 </p>
               </div>
@@ -160,12 +160,12 @@ function HomeServicesSection() {
         </div>
 
         {/* CTA */}
-        <div className="flex justify-center mt-20">
+        <div className="flex justify-center mt-12 md:mt-20">
           <Link
             href="/services"
-            className="bg-red-600 hover:bg-red-700 text-white text-sm font-black uppercase tracking-widest px-12 py-4 rounded-full transition-all hover:scale-105 active:scale-95 shadow-xl shadow-red-600/30 flex items-center gap-3"
+            className="bg-red-600 hover:bg-red-700 text-white text-xs md:text-sm font-black uppercase tracking-widest px-8 md:px-12 py-4 rounded-full transition-all hover:scale-105 active:scale-95 shadow-xl shadow-red-600/30 flex items-center gap-3"
           >
-            <span className="text-lg">›</span> {t("home_services_btn")}
+            <span className="text-base md:text-lg">›</span> {t("home_services_btn")}
           </Link>
         </div>
       </div>
@@ -180,7 +180,7 @@ function HomeAboutSection() {
   const { t } = useLanguage();
 
   return (
-    <section className="bg-slate-950 py-32 px-6 relative overflow-hidden">
+    <section className="bg-slate-950 py-16 md:py-32 px-4 md:px-6 relative overflow-hidden">
       {/* Texture Overlay (CSS-based noise) */}
       <div
         className="absolute inset-0 opacity-[0.03] pointer-events-none bg-repeat"
@@ -191,9 +191,9 @@ function HomeAboutSection() {
         <SectionHeader title={t("home_about_title")} light />
 
         {/* Balanced Three-column layout */}
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-          {/* Left Image */}
-          <div className="relative w-full lg:w-64 h-80 rounded-[3rem] overflow-hidden shrink-0 shadow-2xl border-2 border-white/5 group">
+        <div className="flex flex-col lg:flex-row items-center gap-8 md:gap-12 lg:gap-20">
+          {/* Left Image - Hidden on mobile for cleaner look or kept small */}
+          <div className="relative w-full lg:w-64 h-48 sm:h-64 md:h-80 rounded-[2rem] md:rounded-[3rem] overflow-hidden shrink-0 shadow-2xl border-2 border-white/5 group">
             <Image
               src="/construction_hero.png"
               alt="Construction work"
@@ -204,21 +204,21 @@ function HomeAboutSection() {
           </div>
 
           {/* Center Text */}
-          <div className="flex-1 text-center flex flex-col items-center">
-            <div className="w-16 h-1 bg-red-600 rounded-full mb-8" />
-            <p className="text-slate-300 text-xl md:text-2xl leading-relaxed font-light mb-12 italic">
+          <div className="flex-1 text-center flex flex-col items-center px-2">
+            <div className="w-12 md:w-16 h-1 bg-red-600 rounded-full mb-6 md:mb-8" />
+            <p className="text-slate-300 text-base sm:text-lg md:text-2xl leading-relaxed font-light mb-8 md:mb-12 italic">
               "{t("home_about_text")}"
             </p>
             <Link
               href="/about"
-              className="bg-red-600 hover:bg-red-700 text-white text-sm font-black uppercase tracking-widest px-12 py-4 rounded-full transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-red-600/40 flex items-center gap-3"
+              className="bg-red-600 hover:bg-red-700 text-white text-xs md:text-sm font-black uppercase tracking-widest px-10 md:px-12 py-4 rounded-full transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-red-600/40 flex items-center gap-3"
             >
-              <span className="text-lg">›</span> {t("home_about_btn")}
+              <span className="text-base md:text-lg">›</span> {t("home_about_btn")}
             </Link>
           </div>
 
-          {/* Right Image */}
-          <div className="relative w-full lg:w-64 h-80 rounded-[3rem] overflow-hidden shrink-0 shadow-2xl border-2 border-white/5 group">
+          {/* Right Image - Hidden on very small screens to avoid clutter */}
+          <div className="hidden sm:block relative w-full lg:w-64 h-64 md:h-80 rounded-[2rem] md:rounded-[3rem] overflow-hidden shrink-0 shadow-2xl border-2 border-white/5 group">
             <Image
               src="/project2.png"
               alt="Building project"
@@ -266,27 +266,27 @@ function HomeProjectsSection() {
   const visibleProjects = getVisibleProjects();
 
   return (
-    <section className="bg-[#f0f0f0] dark:bg-slate-900/50 py-32 px-6 overflow-hidden">
+    <section className="bg-[#f0f0f0] dark:bg-slate-900/50 py-16 md:py-32 px-4 md:px-6 overflow-hidden">
       <div className="max-w-6xl mx-auto">
         <SectionHeader title={t("home_projects_title")} />
 
         <div 
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
-          className="bg-white dark:bg-slate-900 rounded-[3rem] border-4 border-slate-900 dark:border-white/10 p-4 md:p-12 shadow-[20px_20px_0px_0px_rgba(15,23,42,1)] dark:shadow-[20px_20px_0px_0px_rgba(255,255,255,0.05)] relative"
+          className="bg-white dark:bg-slate-900 rounded-[2rem] md:rounded-[3rem] border-2 md:border-4 border-slate-900 dark:border-white/10 p-6 md:p-12 shadow-[10px_10px_0px_0px_rgba(15,23,42,1)] md:shadow-[20px_20px_0px_0px_rgba(15,23,42,1)] dark:shadow-[10px_10px_0px_0px_rgba(255,255,255,0.05)] md:shadow-[20px_20px_0px_0px_rgba(255,255,255,0.05)] relative"
         >
           {loading ? (
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
               {[1, 2, 3].map((n) => (
-                <div key={n} className="h-80 bg-slate-100 dark:bg-slate-800 rounded-2xl animate-pulse" />
+                <div key={n} className="h-64 md:h-80 bg-slate-100 dark:bg-slate-800 rounded-2xl animate-pulse" />
               ))}
             </div>
           ) : projects.length === 0 ? (
-            <div className="text-center py-20">
-              <p className="text-slate-400 font-bold uppercase tracking-widest">No projects found in the database.</p>
+            <div className="text-center py-10 md:py-20">
+              <p className="text-slate-400 font-bold uppercase tracking-widest text-xs md:text-base">No projects found in the database.</p>
             </div>
           ) : (
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
               <AnimatePresence mode="popLayout">
                 {visibleProjects.map((project: any, i) => (
                   <motion.div
@@ -300,13 +300,13 @@ function HomeProjectsSection() {
                       ease: [0.22, 1, 0.36, 1],
                       delay: i * 0.1 
                     }}
-                    className="flex flex-col h-full"
+                    className={`flex flex-col h-full ${i >= 1 ? 'hidden sm:flex' : ''} ${i >= 2 ? 'hidden md:flex' : ''}`}
                   >
                     <Link
                       href={`/projects/${project.slug}`}
                       className="group flex flex-col h-full bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border border-slate-100 dark:border-slate-700"
                     >
-                      <div className="relative h-56 overflow-hidden bg-slate-100 dark:bg-slate-700">
+                      <div className="relative h-48 md:h-56 overflow-hidden bg-slate-100 dark:bg-slate-700">
                         <Image
                           src={urlFor(project.image).width(800).url() || "/project1.png"}
                           alt={language === "ar" && project.titleAr ? project.titleAr : project.title}
@@ -315,12 +315,12 @@ function HomeProjectsSection() {
                           className="object-cover transition-transform duration-700 group-hover:scale-110"
                         />
                       </div>
-                      <div className="p-8 flex flex-col flex-grow">
-                        <h3 className="text-lg font-black text-slate-800 dark:text-white leading-tight mb-4 group-hover:text-red-600 transition-colors">
+                      <div className="p-6 md:p-8 flex flex-col flex-grow">
+                        <h3 className="text-base md:text-lg font-black text-slate-800 dark:text-white leading-tight mb-4 group-hover:text-red-600 transition-colors">
                           {language === "ar" && project.titleAr ? project.titleAr : project.title}
                         </h3>
                         <div className="mt-auto">
-                          <span className="text-[11px] font-black uppercase tracking-[0.2em] text-slate-400 group-hover:text-red-600 transition-colors flex items-center gap-2">
+                          <span className="text-[10px] md:text-[11px] font-black uppercase tracking-[0.2em] text-slate-400 group-hover:text-red-600 transition-colors flex items-center gap-2">
                             {language === "ar" ? "اقرأ المزيد" : "READ MORE"} <span className="text-lg">»</span>
                           </span>
                         </div>
@@ -334,8 +334,8 @@ function HomeProjectsSection() {
 
           {/* Autoplay Progress Bar */}
           {projects.length > 3 && (
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 items-center">
-               <div className="h-1 w-32 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+            <div className="absolute bottom-2 md:bottom-4 left-1/2 -translate-x-1/2 flex gap-2 items-center">
+               <div className="h-1 w-24 md:w-32 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
                   <motion.div 
                     key={index}
                     initial={{ width: "0%" }}
@@ -348,12 +348,12 @@ function HomeProjectsSection() {
           )}
         </div>
 
-        <div className="flex justify-center mt-20">
+        <div className="flex justify-center mt-12 md:mt-20">
           <Link
             href="/projects"
-            className="bg-red-600 hover:bg-red-700 text-white text-sm font-black uppercase tracking-widest px-12 py-4 rounded-full transition-all hover:scale-105 active:scale-95 shadow-xl shadow-red-600/30 flex items-center gap-3"
+            className="bg-red-600 hover:bg-red-700 text-white text-xs md:text-sm font-black uppercase tracking-widest px-8 md:px-12 py-4 rounded-full transition-all hover:scale-105 active:scale-95 shadow-xl shadow-red-600/30 flex items-center gap-3"
           >
-            <span className="text-lg">›</span> {t("home_projects_btn")}
+            <span className="text-base md:text-lg">›</span> {t("home_projects_btn")}
           </Link>
         </div>
       </div>
