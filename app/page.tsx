@@ -34,9 +34,9 @@ export default function Home() {
           </video>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-20 text-center flex flex-col items-center">
-          <div className="mb-6 md:mb-8 animate-in fade-in zoom-in-75 duration-1000 flex justify-center w-full">
-            <div className="relative w-[180px] md:w-[320px] aspect-square">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-20 text-center flex flex-col items-center pt-24 md:pt-32">
+          <div className="mb-6 md:mb-12 animate-in fade-in zoom-in-75 duration-1000 flex justify-center w-full">
+            <div className="relative w-[200px] md:w-[450px] aspect-square">
               <Image
                 src="/Logo.png"
                 alt="Monterial Logo"
@@ -44,7 +44,7 @@ export default function Home() {
                 className="object-contain"
                 priority
                 loading="eager"
-                sizes="(max-width: 768px) 180px, 320px"
+                sizes="(max-width: 768px) 200px, 450px"
               />
             </div>
           </div>

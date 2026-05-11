@@ -37,61 +37,64 @@ export default function Header() {
             <nav className="max-w-[1400px] mx-auto bg-white/95 dark:bg-slate-950/90 backdrop-blur-2xl border border-white/20 md:rounded-[100px] rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.1)] px-5 md:px-8 h-16 md:h-24 flex items-center justify-between pointer-events-auto transition-all duration-500 relative">
                 
                 {/* Logo */}
-                <NextLink href="/" className="relative h-10 md:h-16 w-32 md:w-[180px] flex-none transition-transform hover:scale-105 active:scale-95 shrink-0" onClick={() => setIsMobileMenuOpen(false)}>
+                <NextLink href="/" className="relative h-10 md:h-20 w-32 md:w-[240px] flex-none transition-transform hover:scale-105 active:scale-95 shrink-0" onClick={() => setIsMobileMenuOpen(false)}>
                     <NextImage
                         src="/Logo.png"
                         alt="Monterial Constructions Logo"
                         fill
-                        sizes="(max-width: 768px) 128px, 180px"
+                        sizes="(max-width: 768px) 128px, 240px"
                         className="object-contain"
                         priority
                         loading="eager"
                     />
                 </NextLink>
 
-                {/* Desktop Navigation Links */}
-                <div className="hidden md:flex items-center gap-2 lg:gap-3">
-                    {navLinks.map((link) => (
-                        <NextLink
-                            key={link.name}
-                            href={link.href}
-                            className={`px-6 py-2 rounded-full text-[11px] font-bold uppercase tracking-wider transition-all duration-300 border ${link.special
-                                ? "border-red-600 text-red-600 hover:bg-red-600 hover:text-white"
-                                : "border-slate-800 dark:border-white/30 text-slate-800 dark:text-white hover:bg-slate-800 hover:text-white dark:hover:bg-white dark:hover:text-black"
-                                }`}
+                {/* Group: Nav & Socials */}
+                <div className="hidden md:flex items-center gap-4 lg:gap-8">
+                    {/* Desktop Navigation Links */}
+                    <div className="flex items-center gap-2 lg:gap-3">
+                        {navLinks.map((link) => (
+                            <NextLink
+                                key={link.name}
+                                href={link.href}
+                                className={`px-4 lg:px-6 py-2 rounded-full text-[10px] lg:text-[11px] font-bold uppercase tracking-wider transition-all duration-300 border ${link.special
+                                    ? "border-red-600 text-red-600 hover:bg-red-600 hover:text-white"
+                                    : "border-slate-800 dark:border-white/30 text-slate-800 dark:text-white hover:bg-slate-800 hover:text-white dark:hover:bg-white dark:hover:text-black"
+                                    }`}
+                            >
+                                {link.name}
+                            </NextLink>
+                        ))}
+
+                        {/* Language Selector */}
+                        <button
+                            onClick={toggleLanguage}
+                            className="flex items-center gap-2 px-3 lg:px-6 py-2 rounded-full border border-slate-800 dark:border-white/30 text-slate-800 dark:text-white text-[10px] lg:text-[11px] font-bold uppercase tracking-wider hover:bg-slate-50 dark:hover:bg-white/5 transition-all"
                         >
-                            {link.name}
-                        </NextLink>
-                    ))}
-
-                    {/* Language Selector */}
-                    <button
-                        onClick={toggleLanguage}
-                        className="flex items-center gap-2 px-4 lg:px-6 py-2 rounded-full border border-slate-800 dark:border-white/30 text-slate-800 dark:text-white text-[10px] lg:text-[11px] font-bold uppercase tracking-wider hover:bg-slate-50 dark:hover:bg-white/5 transition-all"
-                    >
-                        {t("header_lang")}
-                        <span className="text-[8px] transform transition-transform duration-300 group-hover:rotate-180">
-                            {language === "en" ? "▼" : "▲"}
-                        </span>
-                    </button>
-
-                    {/* Theme Toggle */}
-                    <button
-                        onClick={toggleTheme}
-                        className="w-10 h-10 rounded-full border border-slate-800 dark:border-white/30 flex items-center justify-center text-slate-800 dark:text-white hover:bg-slate-50 dark:hover:bg-white/5 transition-all"
-                        aria-label="Toggle Theme"
-                    >
-                        {theme === "dark" ? "☀️" : "🌙"}
-                    </button>
-                </div>
-
-                {/* Social Icons - Desktop */}
-                <div className="hidden md:flex items-center gap-2 lg:gap-3 shrink-0">
-                    {socialIcons.map((social) => (
-                        <button key={social.name} className="w-9 h-9 lg:w-12 lg:h-12 bg-red-600 text-white rounded-full flex items-center justify-center hover:scale-110 transition-all hover:bg-neutral-800 shadow-md">
-                            <svg width="16" height="16" className="lg:w-[18px] lg:h-[18px]" viewBox="0 0 24 24" fill="currentColor"><path d={social.path} /></svg>
+                            {t("header_lang")}
+                            <span className="text-[8px] transform transition-transform duration-300 group-hover:rotate-180">
+                                {language === "en" ? "▼" : "▲"}
+                            </span>
                         </button>
-                    ))}
+
+                        {/* Theme Toggle */}
+                        <button
+                            onClick={toggleTheme}
+                            className="w-9 h-9 lg:w-10 lg:h-10 rounded-full border border-slate-800 dark:border-white/30 flex items-center justify-center text-slate-800 dark:text-white hover:bg-slate-50 dark:hover:bg-white/5 transition-all"
+                            aria-label="Toggle Theme"
+                        >
+                            {theme === "dark" ? "☀️" : "🌙"}
+                        </button>
+                    </div>
+
+                    {/* Social Icons - Desktop */}
+                    <div className="flex items-center gap-2 lg:gap-3 shrink-0 border-l border-slate-200 dark:border-white/10 pl-4 lg:pl-8">
+                        {socialIcons.map((social) => (
+                            <button key={social.name} className="w-8 h-8 lg:w-11 lg:h-11 bg-red-600 text-white rounded-full flex items-center justify-center hover:scale-110 transition-all hover:bg-neutral-800 shadow-md">
+                                <svg width="14" height="14" className="lg:w-[18px] lg:h-[18px]" viewBox="0 0 24 24" fill="currentColor"><path d={social.path} /></svg>
+                            </button>
+                        ))}
+                    </div>
                 </div>
 
                 {/* Mobile Menu Button & Quick Actions */}
