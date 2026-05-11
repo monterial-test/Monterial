@@ -30,7 +30,10 @@ export default function Header() {
     ];
 
     return (
-        <header className="fixed top-4 md:top-6 left-0 right-0 z-50 px-4 md:px-8 pointer-events-none">
+        <header 
+            className="fixed top-4 md:top-6 left-0 right-0 z-50 px-4 md:px-8 pointer-events-none"
+            dir={language === 'ar' ? 'rtl' : 'ltr'}
+        >
             <nav className="max-w-[1400px] mx-auto bg-white/95 dark:bg-slate-950/90 backdrop-blur-2xl border border-white/20 md:rounded-[100px] rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.1)] px-5 md:px-8 h-16 md:h-24 flex items-center justify-between pointer-events-auto transition-all duration-500 relative">
                 
                 {/* Logo */}
@@ -47,7 +50,7 @@ export default function Header() {
                 </NextLink>
 
                 {/* Desktop Navigation Links */}
-                <div className="hidden lg:flex items-center gap-3">
+                <div className="hidden md:flex items-center gap-2 lg:gap-3">
                     {navLinks.map((link) => (
                         <NextLink
                             key={link.name}
@@ -64,7 +67,7 @@ export default function Header() {
                     {/* Language Selector */}
                     <button
                         onClick={toggleLanguage}
-                        className="flex items-center gap-2 px-6 py-2 rounded-full border border-slate-800 dark:border-white/30 text-slate-800 dark:text-white text-[11px] font-bold uppercase tracking-wider hover:bg-slate-50 dark:hover:bg-white/5 transition-all"
+                        className="flex items-center gap-2 px-4 lg:px-6 py-2 rounded-full border border-slate-800 dark:border-white/30 text-slate-800 dark:text-white text-[10px] lg:text-[11px] font-bold uppercase tracking-wider hover:bg-slate-50 dark:hover:bg-white/5 transition-all"
                     >
                         {t("header_lang")}
                         <span className="text-[8px] transform transition-transform duration-300 group-hover:rotate-180">
@@ -83,16 +86,16 @@ export default function Header() {
                 </div>
 
                 {/* Social Icons - Desktop */}
-                <div className="hidden lg:flex items-center gap-3 shrink-0">
+                <div className="hidden md:flex items-center gap-2 lg:gap-3 shrink-0">
                     {socialIcons.map((social) => (
-                        <button key={social.name} className="w-10 h-10 md:w-12 md:h-12 bg-red-600 text-white rounded-full flex items-center justify-center hover:scale-110 transition-all hover:bg-neutral-800 shadow-md">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d={social.path} /></svg>
+                        <button key={social.name} className="w-9 h-9 lg:w-12 lg:h-12 bg-red-600 text-white rounded-full flex items-center justify-center hover:scale-110 transition-all hover:bg-neutral-800 shadow-md">
+                            <svg width="16" height="16" className="lg:w-[18px] lg:h-[18px]" viewBox="0 0 24 24" fill="currentColor"><path d={social.path} /></svg>
                         </button>
                     ))}
                 </div>
 
                 {/* Mobile Menu Button & Quick Actions */}
-                <div className="flex lg:hidden items-center gap-2">
+                <div className="flex md:hidden items-center gap-2">
                     <button
                         onClick={toggleLanguage}
                         className="w-8 h-8 rounded-full border border-slate-800 dark:border-white/30 flex items-center justify-center text-slate-800 dark:text-white text-[10px] font-bold uppercase"

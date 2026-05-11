@@ -10,7 +10,10 @@ export default function Footer() {
     const { t } = useLanguage();
 
     return (
-        <footer className="bg-[#121212] text-white py-16 px-4 md:px-6 relative">
+        <footer 
+            className="bg-[#121212] text-white py-16 px-4 md:px-6 relative"
+            dir={t("rights_reserved").includes("جميع") ? "rtl" : "ltr"}
+        >
             <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10">
                 {/* Left Card: Follow Us & Locations */}
                 <div className="bg-[#1e1e1e] rounded-[2.5rem] md:rounded-[3rem] p-6 md:p-12 shadow-2xl border border-white/5 transition-transform hover:scale-[1.01] duration-500">
