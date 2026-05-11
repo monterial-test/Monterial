@@ -38,9 +38,9 @@ export default function Home() {
             <Image
               src="/Logo.png"
               alt="Monterial Logo"
-              width={220}
-              height={220}
-              className="mx-auto md:w-[290px]"
+              width={290}
+              height={290}
+              className="mx-auto w-[180px] md:w-[290px] h-auto object-contain"
               priority
               sizes="(max-width: 768px) 180px, 290px"
             />

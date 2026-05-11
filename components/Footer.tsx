@@ -13,8 +13,8 @@ export default function Footer() {
         <footer className="bg-[#121212] text-white py-16 px-4 md:px-6 relative">
             <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10">
                 {/* Left Card: Follow Us & Locations */}
-                <div className="bg-[#1e1e1e] rounded-[3rem] p-8 md:p-12 shadow-2xl border border-white/5 transition-transform hover:scale-[1.01] duration-500">
-                    <h3 className="text-4xl md:text-5xl font-bold mb-10 tracking-tight text-white/95">{t("footer_follow")}</h3>
+                <div className="bg-[#1e1e1e] rounded-[2.5rem] md:rounded-[3rem] p-6 md:p-12 shadow-2xl border border-white/5 transition-transform hover:scale-[1.01] duration-500">
+                    <h3 className="text-2xl md:text-5xl font-bold mb-8 md:mb-10 tracking-tight text-white/95">{t("footer_follow")}</h3>
 
                     <div className="flex gap-4 mb-14">
                         {[
@@ -39,8 +39,8 @@ export default function Footer() {
                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b91c1c" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" /></svg>
                                 </div>
                                 <div className="text-start">
-                                    <strong className="block text-white mb-1 font-bold text-lg">{loc.label} :</strong>
-                                    <span className="group-hover:text-amber-500 transition-colors leading-relaxed underline hover:no-underline underline-offset-4 decoration-amber-500/30">{loc.text}</span>
+                                    <strong className="block text-white mb-1 font-bold text-base md:text-lg">{loc.label} :</strong>
+                                    <span className="text-gray-400 group-hover:text-amber-500 transition-colors leading-relaxed underline hover:no-underline underline-offset-4 decoration-amber-500/30 text-xs md:text-base">{loc.text}</span>
                                 </div>
                             </NextLink>
                         ))}
@@ -50,16 +50,16 @@ export default function Footer() {
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b91c1c" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
                             </div>
                             <div className="text-start">
-                                <strong className="block text-white mb-1 font-bold text-lg">{t("footer_opening")} :</strong>
-                                <span className="group-hover:text-white transition-colors">{t("footer_opening_hours")}</span>
+                                <strong className="block text-white mb-1 font-bold text-base md:text-lg">{t("footer_opening")} :</strong>
+                                <span className="text-gray-400 group-hover:text-white transition-colors text-xs md:text-base">{t("footer_opening_hours")}</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 {/* Right Card: Contact Us */}
-                <div className="bg-[#1e1e1e] rounded-[3rem] p-8 md:p-12 shadow-2xl border border-white/5 flex flex-col transition-transform hover:scale-[1.01] duration-500">
-                    <NextLink href="/contact" className="bg-[#b91c1c] text-white text-center py-5 rounded-3xl font-black text-2xl mb-12 shadow-xl hover:bg-red-700 transition-all hover:scale-[1.02] active:scale-95 uppercase tracking-widest">
+                <div className="bg-[#1e1e1e] rounded-[2.5rem] md:rounded-[3rem] p-6 md:p-12 shadow-2xl border border-white/5 flex flex-col transition-transform hover:scale-[1.01] duration-500">
+                    <NextLink href="/contact" className="bg-[#b91c1c] text-white text-center py-4 md:py-5 rounded-2xl md:rounded-3xl font-black text-lg md:text-2xl mb-8 md:mb-12 shadow-xl hover:bg-red-700 transition-all hover:scale-[1.02] active:scale-95 uppercase tracking-widest">
                         {t("footer_contact_btn")}
                     </NextLink>
 
@@ -72,14 +72,14 @@ export default function Footer() {
                             <NextLink
                                 key={idx}
                                 href={item.link}
-                                className="bg-[#181818] rounded-[2rem] p-6 md:p-8 border border-white/5 flex items-center gap-8 transition-all hover:bg-[#252525] hover:border-red-600/30 hover:scale-[1.02] active:scale-[0.98] group"
+                                className="bg-[#181818] rounded-[1.5rem] md:rounded-[2rem] p-5 md:p-8 border border-white/5 flex items-center gap-6 md:gap-8 transition-all hover:bg-[#252525] hover:border-red-600/30 hover:scale-[1.02] active:scale-[0.98] group"
                             >
-                                <div className="w-16 h-16 flex items-center justify-center shrink-0">
-                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="#b91c1c" className="group-hover:scale-110 transition-transform"><path d={item.icon} /></svg>
+                                <div className="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center shrink-0">
+                                    <svg width="32" height="32" viewBox="0 0 24 24" fill="#b91c1c" className="md:w-12 md:h-12 group-hover:scale-110 transition-transform"><path d={item.icon} /></svg>
                                 </div>
                                 <div className="text-start">
-                                    <div className="text-gray-500 text-xs md:text-sm mb-1 uppercase tracking-[0.2em] font-black">{item.label}</div>
-                                    <div className={`font-black text-white/90 break-all ${item.val.includes('@') ? 'text-[10px] xs:text-xs md:text-base lg:text-lg' : 'text-lg md:text-2xl'}`} dir="ltr">
+                                    <div className="text-gray-500 text-[10px] md:text-sm mb-1 uppercase tracking-[0.2em] font-black">{item.label}</div>
+                                    <div className={`font-black text-white/90 break-all ${item.val.includes('@') ? 'text-[10px] xs:text-xs md:text-base lg:text-lg' : 'text-base md:text-2xl'}`} dir="ltr">
                                         {item.val}
                                     </div>
                                 </div>
