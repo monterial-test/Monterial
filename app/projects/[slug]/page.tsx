@@ -9,7 +9,6 @@ interface ProjectPageProps {
 }
 
 export const revalidate = 3600; // Revalidate every hour
-export const runtime = 'edge';
 
 export async function generateStaticParams() {
   const projects = await client.fetch(`*[_type == "project"]{ "slug": slug.current }`);
