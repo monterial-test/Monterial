@@ -34,14 +34,15 @@ export default function Header() {
             <nav className="max-w-[1400px] mx-auto bg-white/95 dark:bg-slate-950/90 backdrop-blur-2xl border border-white/20 md:rounded-[100px] rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.1)] px-5 md:px-8 h-16 md:h-24 flex items-center justify-between pointer-events-auto transition-all duration-500 relative">
                 
                 {/* Logo */}
-                <NextLink href="/" className="relative h-10 md:h-16 w-32 md:w-44 flex-none transition-transform hover:scale-105 active:scale-95 shrink-0" onClick={() => setIsMobileMenuOpen(false)}>
+                <NextLink href="/" className="relative h-10 md:h-16 w-32 md:w-[180px] flex-none transition-transform hover:scale-105 active:scale-95 shrink-0" onClick={() => setIsMobileMenuOpen(false)}>
                     <NextImage
                         src="/Logo.png"
                         alt="Monterial Constructions Logo"
                         fill
-                        sizes="(max-width: 768px) 128px, 176px"
+                        sizes="(max-width: 768px) 128px, 180px"
                         className="object-contain"
                         priority
+                        loading="eager"
                     />
                 </NextLink>
 

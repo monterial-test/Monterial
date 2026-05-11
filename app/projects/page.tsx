@@ -39,12 +39,12 @@ export default function ProjectsPage() {
                             <Link key={project.id} href={`/projects/${project.slug}`} className="group relative bg-white dark:bg-slate-900 rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-lg border border-slate-100 dark:border-slate-800 flex flex-col h-full transition-all hover:shadow-2xl hover:-translate-y-2 card">
                                 <div className="relative h-64 md:h-72 overflow-hidden bg-slate-100 dark:bg-slate-800">
                                     <Image
-                                        src={urlFor(project.image).width(800).fit('max').url() || "/project1.png"}
+                                        src={urlFor(project.image).width(600).quality(80).url() || "/project1.png"}
                                         alt={project.title}
                                         fill
-                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                        className="object-contain p-4 transition-transform duration-500"
-                                        priority={i < 3}
+                                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                        priority={i < 2}
                                     />
                                     <div className="absolute top-4 left-4 md:top-6 md:left-6 bg-red-600 text-white text-[9px] md:text-[10px] font-black uppercase tracking-widest px-3 md:px-4 py-1.5 rounded-full shadow-lg">
                                         {language === 'ar' && project.categoryAr ? project.categoryAr : project.category}

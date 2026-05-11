@@ -25,6 +25,7 @@ export default function Home() {
             loop
             muted
             playsInline
+            preload="auto"
             poster="/construction_hero.png"
             className="absolute inset-0 w-full h-full object-cover"
           >
@@ -34,16 +35,18 @@ export default function Home() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-20 text-center flex flex-col items-center">
-          <div className="mb-6 md:mb-8 animate-in fade-in zoom-in-75 duration-1000">
-            <Image
-              src="/Logo.png"
-              alt="Monterial Logo"
-              width={290}
-              height={290}
-              className="mx-auto w-[180px] md:w-[290px] h-auto object-contain"
-              priority
-              sizes="(max-width: 768px) 180px, 290px"
-            />
+          <div className="mb-6 md:mb-8 animate-in fade-in zoom-in-75 duration-1000 flex justify-center w-full">
+            <div className="relative w-[180px] md:w-[320px] aspect-square">
+              <Image
+                src="/Logo.png"
+                alt="Monterial Logo"
+                fill
+                className="object-contain"
+                priority
+                loading="eager"
+                sizes="(max-width: 768px) 180px, 320px"
+              />
+            </div>
           </div>
 
           <div className="relative inline-block mb-4 md:mb-6">
