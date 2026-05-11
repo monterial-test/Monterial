@@ -11,6 +11,8 @@ import ContentProtection from "../components/ContentProtection";
 import Header from "../components/Header";
 import { ThemeProvider } from "../context/ThemeContext";
 import React from "react";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -132,6 +134,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
               </SecurityVerification>
             </ThemeProvider>
           </LanguageProvider>
+          <Analytics />
+          <SpeedInsights />
         </div>
       </body>
     </html>

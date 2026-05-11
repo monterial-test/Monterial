@@ -201,6 +201,7 @@ function HomeAboutSection() {
               src="/construction_hero.png"
               alt="Construction work"
               fill
+              loading="lazy"
               className="object-cover transition-transform duration-1000 group-hover:scale-110"
               sizes="(max-width: 1024px) 100vw, 300px"
             />
@@ -311,10 +312,11 @@ function HomeProjectsSection() {
                     >
                       <div className="relative h-48 md:h-56 overflow-hidden bg-slate-100 dark:bg-slate-700">
                         <Image
-                          src={urlFor(project.image).width(800).url() || "/project1.png"}
+                          src={urlFor(project.image).width(600).format('webp').quality(80).url() || "/project1.png"}
                           alt={language === "ar" && project.titleAr ? project.titleAr : project.title}
                           fill
-                          sizes="(max-width: 768px) 100vw, 33vw"
+                          loading="lazy"
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           className="object-cover transition-transform duration-700 group-hover:scale-110"
                         />
                       </div>

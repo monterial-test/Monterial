@@ -48,10 +48,12 @@ export default function ProjectGallery({ images, title }: ProjectGalleryProps) {
             onClick={() => setSelectedIndex(idx)}
           >
             <Image
-              src={urlFor(img).width(1200).fit('max').url()}
+              src={urlFor(img).width(800).format('webp').quality(80).url()}
               alt={`${title} gallery ${idx}`}
               fill
-              className="object-contain p-4 transition-transform duration-700"
+              loading="lazy"
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-contain p-4 transition-transform duration-700 group-hover:scale-110"
             />
             <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                <span className="bg-white/20 backdrop-blur-md text-white px-4 py-2 rounded-full text-[10px] font-black uppercase">View Full Image</span>

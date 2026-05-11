@@ -8,18 +8,28 @@ interface ProjectPageProps {
   params: Promise<{ slug: string }>
 }
 
+export const revalidate = 3600; // Revalidate every hour
+export const runtime = 'edge';
+
+export async function generateStaticParams() {
+  const projects = await client.fetch(`*[_type == "project"]{ "slug": slug.current }`);
+  return projects.map((project: { slug: string }) => ({
+    slug: project.slug,
+  }));
+}
+
 async function getProject(slug: string) {
-  const query = `*[_type == "project" && slug.current == $slug][0]`;
+  const query = `*[_type == "project" && slug.current == $slug][0]{
+    title, titleAr, description, descriptionAr, category, categoryAr, location, locationAr, image, gallery, slug
+  }`;
   try {
-    const project = await client.fetch(query, { slug }, { next: { revalidate: 60 } });
+    const project = await client.fetch(query, { slug });
     return project;
   } catch (error) {
-    console.error("Sanity server fetch error (fallback to client):", error);
+    console.error("Sanity fetch error:", error);
     return null;
   }
 }
-
-export const dynamic = 'force-dynamic'
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
     const { slug } = await params;

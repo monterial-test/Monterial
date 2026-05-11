@@ -39,10 +39,11 @@ export default function ProjectClient({ initialProject, slug, jsonLd }: { initia
             {/* Hero Section */}
             <section className="relative h-[70vh] w-full overflow-hidden bg-slate-900">
                 <Image
-                    src={project.image ? urlFor(project.image).width(1920).fit('max').url() : '/project1.png'}
+                    src={project.image ? urlFor(project.image).width(1200).format('webp').quality(85).url() : '/project1.png'}
                     alt={title}
                     fill
-                    className="object-contain p-10"
+                    sizes="100vw"
+                    className="object-contain p-4 md:p-10"
                     priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />

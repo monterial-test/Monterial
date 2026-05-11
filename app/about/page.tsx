@@ -310,7 +310,9 @@ export default function AboutPage() {
                             src="/project2.png"
                             alt="Target and Goals"
                             fill
+                            loading="lazy"
                             className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                            sizes="(max-width: 1024px) 100vw, 1200px"
                         />
                         <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors duration-500" />
                     </div>
