@@ -130,21 +130,4 @@ export default function Home() {
       </div>
     </div>
   );
-                  />
-               </div>
-            </div>
-          )}
-        </div>
-
-        <div className="flex justify-center mt-12 md:mt-20">
-          <Link
-            href="/projects"
-            className="bg-red-600 hover:bg-red-700 text-white text-xs md:text-sm font-black uppercase tracking-widest px-8 md:px-12 py-4 rounded-full transition-all hover:scale-105 active:scale-95 shadow-xl shadow-red-600/30 flex items-center gap-3"
-          >
-            <span className="text-base md:text-lg">›</span> {t("home_projects_btn")}
-          </Link>
-        </div>
-      </div>
-    </section>
-  );
 }
