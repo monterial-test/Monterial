@@ -13,6 +13,13 @@ import { urlFor } from "../lib/sanity";
 /* ─────────────────────────────────────────── */
 export default function Home() {
   const { t } = useLanguage();
+  const [showVideo, setShowVideo] = React.useState(false);
+
+  // Delay video loading to boost LCP scores
+  React.useEffect(() => {
+    const timer = setTimeout(() => setShowVideo(true), 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className="bg-slate-50 dark:bg-slate-950">
@@ -20,18 +27,33 @@ export default function Home() {
       <section className="relative h-[85vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-slate-900/60 z-10" />
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-            poster="/construction_hero.png"
-            className="absolute inset-0 w-full h-full object-cover"
-          >
-            <source src="/hero_video.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+          
+          {/* Priority Image shown immediately */}
+          <div className="absolute inset-0 w-full h-full">
+             <Image 
+                src="/construction_hero.png" 
+                alt="Construction" 
+                fill 
+                priority 
+                className={`object-cover transition-opacity duration-1000 ${showVideo ? 'opacity-0' : 'opacity-100'}`}
+                sizes="100vw"
+             />
+          </div>
+
+          {/* Video loaded with delay */}
+          {showVideo && (
+            <div className="absolute inset-0 w-full h-full animate-in fade-in duration-1000">
+              <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover"
+              >
+                  <source src="/hero_video.mp4" type="video/mp4" />
+              </video>
+            </div>
+          )}
         </div>
 
         <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-20 text-center flex flex-col items-center pt-24 md:pt-32">
@@ -282,7 +304,7 @@ function HomeProjectsSection() {
           {loading ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
               {[1, 2, 3].map((n) => (
-                <div key={n} className="h-64 md:h-80 bg-slate-100 dark:bg-slate-800 rounded-2xl animate-pulse" />
+                <div key={n} className="h-[420px] bg-slate-100 dark:bg-slate-800 rounded-2xl animate-pulse" />
               ))}
             </div>
           ) : projects.length === 0 ? (
@@ -291,37 +313,33 @@ function HomeProjectsSection() {
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
-              <AnimatePresence mode="popLayout">
+              <AnimatePresence mode="wait">
                 {visibleProjects.map((project: any, i) => (
                   <motion.div
                     key={project.id || i}
-                    layout
-                    initial={{ opacity: 0, x: 20, scale: 0.95 }}
-                    animate={{ opacity: 1, x: 0, scale: 1 }}
-                    exit={{ opacity: 0, x: -20, scale: 0.95 }}
-                    transition={{ 
-                      duration: 0.6, 
-                      ease: [0.22, 1, 0.36, 1],
-                      delay: i * 0.1 
-                    }}
-                    className={`flex flex-col h-full ${i >= 1 ? 'hidden sm:flex' : ''} ${i >= 2 ? 'hidden md:flex' : ''}`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.4 }}
+                    className={`flex flex-col h-[420px] ${i >= 1 ? 'hidden sm:flex' : ''} ${i >= 2 ? 'hidden md:flex' : ''}`}
                   >
                     <Link
                       href={`/projects/${project.slug}`}
-                      className="group flex flex-col h-full bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border border-slate-100 dark:border-slate-700"
+                      className="group flex flex-col h-full bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-slate-100 dark:border-slate-700"
                     >
-                      <div className="relative h-48 md:h-56 overflow-hidden bg-slate-100 dark:bg-slate-700">
+                      <div className="relative h-56 overflow-hidden bg-slate-100 dark:bg-slate-700">
                         <Image
                           src={urlFor(project.image).width(600).format('webp').quality(80).url() || "/project1.png"}
                           alt={language === "ar" && project.titleAr ? project.titleAr : project.title}
                           fill
-                          loading="lazy"
+                          priority={i === 0}
+                          loading={i === 0 ? "eager" : "lazy"}
                           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                          className="object-cover transition-transform duration-700 group-hover:scale-110"
+                          className="object-cover"
                         />
                       </div>
                       <div className="p-6 md:p-8 flex flex-col flex-grow">
-                        <h3 className="text-base md:text-lg font-black text-slate-800 dark:text-white leading-tight mb-4 group-hover:text-red-600 transition-colors">
+                        <h3 className="text-base md:text-lg font-black text-slate-800 dark:text-white leading-tight mb-4 line-clamp-2 min-h-[3rem]">
                           {language === "ar" && project.titleAr ? project.titleAr : project.title}
                         </h3>
                         <div className="mt-auto">
