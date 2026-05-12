@@ -34,8 +34,9 @@ export default function Home() {
                 src="/construction_hero.png" 
                 alt="Construction" 
                 fill 
-                priority 
-                className={`object-cover transition-opacity duration-1000 ${showVideo ? 'opacity-0' : 'opacity-100'}`}
+                priority
+                fetchPriority="high"
+                className={`object-cover transition-opacity duration-700 ${showVideo ? 'opacity-0' : 'opacity-100'}`}
                 sizes="100vw"
              />
           </div>
@@ -105,12 +106,19 @@ export default function Home() {
 
 
       {/* ── OUR SERVICES ── */}
-      <HomeServicesSection />
+      <div className="min-h-[400px]">
+        <HomeServicesSection />
+      </div>
 
       {/* ── ABOUT US ── */}
-      <HomeAboutSection />
+      <div className="min-h-[400px]">
+        <HomeAboutSection />
+      </div>
+
       {/* ── OUR PROJECTS ── */}
-      <HomeProjectsSection />
+      <div className="min-h-[600px]">
+        <HomeProjectsSection />
+      </div>
     </div>
   );
 }
@@ -320,7 +328,7 @@ function HomeProjectsSection() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    transition={{ duration: 0.4 }}
+                    transition={{ duration: 0.3 }}
                     className={`flex flex-col h-[420px] ${i >= 1 ? 'hidden sm:flex' : ''} ${i >= 2 ? 'hidden md:flex' : ''}`}
                   >
                     <Link
