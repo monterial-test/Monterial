@@ -69,6 +69,7 @@ export default function Header() {
                         {/* Language Selector */}
                         <button
                             onClick={toggleLanguage}
+                            aria-label={language === "en" ? "Switch to Arabic" : "التغيير للغة الإنجليزية"}
                             className="flex items-center gap-2 px-3 lg:px-6 py-2 rounded-full border border-slate-800 dark:border-white/30 text-slate-800 dark:text-white text-[10px] lg:text-[11px] font-bold uppercase tracking-wider hover:bg-slate-50 dark:hover:bg-white/5 transition-all"
                         >
                             {t("header_lang")}
@@ -90,7 +91,7 @@ export default function Header() {
                     {/* Social Icons - Desktop */}
                     <div className="flex items-center gap-2 lg:gap-3 shrink-0 border-l border-slate-200 dark:border-white/10 pl-4 lg:pl-8">
                         {socialIcons.map((social) => (
-                            <button key={social.name} className="w-8 h-8 lg:w-11 lg:h-11 bg-red-600 text-white rounded-full flex items-center justify-center hover:scale-110 transition-all hover:bg-neutral-800 shadow-md">
+                            <button key={social.name} aria-label={`Follow us on ${social.name}`} className="w-8 h-8 lg:w-11 lg:h-11 bg-red-600 text-white rounded-full flex items-center justify-center hover:scale-110 transition-all hover:bg-neutral-800 shadow-md">
                                 <svg width="14" height="14" className="lg:w-[18px] lg:h-[18px]" viewBox="0 0 24 24" fill="currentColor"><path d={social.path} /></svg>
                             </button>
                         ))}
@@ -101,6 +102,7 @@ export default function Header() {
                 <div className="flex md:hidden items-center gap-2">
                     <button
                         onClick={toggleLanguage}
+                        aria-label={language === "en" ? "Switch to Arabic" : "التغيير للعربية"}
                         className="w-8 h-8 rounded-full border border-slate-800 dark:border-white/30 flex items-center justify-center text-slate-800 dark:text-white text-[10px] font-bold uppercase"
                     >
                         {language === "en" ? "AR" : "EN"}
@@ -114,6 +116,7 @@ export default function Header() {
                     </button>
                     <button 
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                        aria-label="Toggle Mobile Menu"
                         className="w-10 h-10 rounded-full bg-slate-100 dark:bg-white/10 flex items-center justify-center text-slate-800 dark:text-white ml-1"
                     >
                         {isMobileMenuOpen ? (

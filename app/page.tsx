@@ -32,18 +32,18 @@ export default function Home() {
           <div className="absolute inset-0 w-full h-full">
              <Image 
                 src="/construction_hero.png" 
-                alt="Construction" 
+                alt="Monterial Hero" 
                 fill 
                 priority
                 fetchPriority="high"
-                className={`object-cover transition-opacity duration-700 ${showVideo ? 'opacity-0' : 'opacity-100'}`}
+                className="object-cover"
                 sizes="100vw"
              />
           </div>
 
-          {/* Video loaded with delay */}
+          {/* Video loaded with delay - overlaps image instead of fading it */}
           {showVideo && (
-            <div className="absolute inset-0 w-full h-full animate-in fade-in duration-1000">
+            <div className="absolute inset-0 w-full h-full animate-in fade-in duration-700">
               <video
                   autoPlay
                   loop
@@ -58,16 +58,16 @@ export default function Home() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-20 text-center flex flex-col items-center pt-24 md:pt-32">
-          <div className="mb-6 md:mb-12 animate-in fade-in zoom-in-75 duration-1000 flex justify-center w-full">
-            <div className="relative w-[200px] md:w-[450px] aspect-square">
+          <div className="mb-6 md:mb-12 flex justify-center w-full">
+            <div className="relative w-[180px] md:w-[380px] aspect-square">
               <Image
                 src="/Logo.png"
-                alt="Monterial Logo"
+                alt="Monterial Constructions Logo"
                 fill
                 className="object-contain"
                 priority
                 loading="eager"
-                sizes="(max-width: 768px) 200px, 450px"
+                sizes="(max-width: 768px) 180px, 380px"
               />
             </div>
           </div>
