@@ -64,10 +64,11 @@ export default function HomeProjectsSection() {
                 {visibleProjects.map((project: any, i) => (
                   <motion.div
                     key={project.id || i}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.3 }}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    exit={{ opacity: 0, y: -30 }}
+                    transition={{ duration: 0.6, delay: i * 0.1, ease: "easeOut" }}
                     className={`flex flex-col h-[420px] ${i >= 1 ? 'hidden sm:flex' : ''} ${i >= 2 ? 'hidden md:flex' : ''}`}
                   >
                     <Link

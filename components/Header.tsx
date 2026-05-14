@@ -39,12 +39,13 @@ export default function Header() {
                 {/* Logo */}
                 <NextLink href="/" className="relative h-10 md:h-20 w-32 md:w-[240px] flex-none transition-transform hover:scale-105 active:scale-95 shrink-0" onClick={() => setIsMobileMenuOpen(false)}>
                     <NextImage
-                        src="/Logo.png"
+                        src="/Logo.webp"
                         alt="Monterial Constructions Logo"
                         fill
                         sizes="(max-width: 768px) 128px, 240px"
                         className="object-contain"
                         priority
+                        unoptimized
                         loading="eager"
                     />
                 </NextLink>

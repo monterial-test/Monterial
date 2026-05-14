@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { useLanguage } from "../context/LanguageContext";
+import ScrollReveal from "../components/ScrollReveal";
 
 // Dynamic Imports for lower sections to reduce TBT
 const HomeServicesSection = dynamic(() => import("../components/home/HomeServicesSection"), {
@@ -20,6 +21,10 @@ const HomeAboutSection = dynamic(() => import("../components/home/HomeAboutSecti
 const HomeProjectsSection = dynamic(() => import("../components/home/HomeProjectsSection"), {
   loading: () => <div className="h-[800px] bg-[#f0f0f0] animate-pulse" />,
   ssr: false
+});
+
+const HomeStatsSection = dynamic(() => import("../components/home/HomeStatsSection"), {
+  ssr: false,
 });
 
 /* ─────────────────────────────────────────── */
@@ -39,31 +44,19 @@ export default function Home() {
     <div className="bg-slate-50 dark:bg-slate-950">
       {/* ── Hero Section ── */}
       <section className="relative h-[85vh] flex items-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-slate-900/60 z-10" />
+        {/* Cinematic Gradient Background */}
+        <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,_#2d0a0a_0%,_#0f172a_100%)]">
+          <div className="absolute inset-0 bg-black/40 z-10" />
           
-          {/* Priority Image shown immediately (Always) */}
-          <div className="absolute inset-0 w-full h-full">
-             <Image 
-                src="/construction_hero.png" 
-                alt="Monterial Hero" 
-                fill 
-                priority
-                fetchPriority="high"
-                className="object-cover"
-                sizes="100vw"
-             />
-          </div>
-
-          {/* Video loaded lazily for ALL devices */}
+          {/* Video loaded lazily - shows behind logo */}
           {shouldLoadVideo && (
-            <div className="absolute inset-0 w-full h-full animate-in fade-in duration-1000">
+            <div className="absolute inset-0 w-full h-full animate-in fade-in duration-[2000ms]">
               <video
                   autoPlay
                   loop
                   muted
                   playsInline
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover opacity-60"
               >
                   <source src="/hero_video.mp4" type="video/mp4" />
               </video>
@@ -73,14 +66,16 @@ export default function Home() {
 
         <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-20 text-center flex flex-col items-center pt-24 md:pt-32">
           <div className="mb-6 md:mb-12 flex justify-center w-full">
-            <div className="relative w-[180px] md:w-[380px] aspect-square">
+            {/* Logo Container with Pulse Animation */}
+            <div className="relative w-[180px] md:w-[380px] aspect-square animate-pulse-slow">
               <Image
-                src="/Logo.png"
+                src="/Logo.webp"
                 alt="Monterial Constructions Logo"
                 fill
-                className="object-contain"
+                className="object-contain drop-shadow-[0_0_30px_rgba(220,38,38,0.3)]"
                 priority
                 loading="eager"
+                unoptimized
                 sizes="(max-width: 768px) 180px, 380px"
               />
             </div>
@@ -97,13 +92,13 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 md:gap-8 animate-in slide-in-from-bottom-16 duration-1000">
             <Link 
               href="/projects" 
-              className="bg-red-600 hover:bg-red-700 text-white px-8 md:px-12 py-4 rounded-full font-black uppercase tracking-widest text-xs md:text-sm transition-all hover:scale-105 shadow-2xl shadow-red-600/40"
+              className="bg-red-600 hover:bg-red-700 text-white px-8 md:px-12 py-4 rounded-full font-black uppercase tracking-widest text-xs md:text-sm transition-all hover:scale-105 shadow-2xl shadow-red-600/40 will-change-transform"
             >
               {t("hero_projects_btn")}
             </Link>
             <Link 
               href="/services" 
-              className="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border-2 border-white/20 px-8 md:px-12 py-4 rounded-full font-black uppercase tracking-widest text-xs md:text-sm transition-all hover:scale-105"
+              className="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border-2 border-white/20 px-8 md:px-12 py-4 rounded-full font-black uppercase tracking-widest text-xs md:text-sm transition-all hover:scale-105 will-change-transform"
             >
               {t("hero_services_btn")}
             </Link>
@@ -114,19 +109,28 @@ export default function Home() {
         <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-slate-50 dark:from-slate-950 to-transparent z-10" />
       </section>
 
+      {/* ── STATS SECTION (SOCIAL PROOF) ── */}
+      <HomeStatsSection />
+
       {/* ── OUR SERVICES (DYNAMIC) ── */}
       <div className="min-h-[400px]">
-        <HomeServicesSection />
+        <ScrollReveal>
+          <HomeServicesSection />
+        </ScrollReveal>
       </div>
 
       {/* ── ABOUT US (DYNAMIC) ── */}
       <div className="min-h-[400px]">
-        <HomeAboutSection />
+        <ScrollReveal delay={0.3}>
+          <HomeAboutSection />
+        </ScrollReveal>
       </div>
 
       {/* ── OUR PROJECTS (DYNAMIC) ── */}
       <div className="min-h-[600px]">
-        <HomeProjectsSection />
+        <ScrollReveal delay={0.4}>
+          <HomeProjectsSection />
+        </ScrollReveal>
       </div>
     </div>
   );

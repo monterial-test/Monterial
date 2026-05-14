@@ -25,34 +25,76 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Monterial Constructions",
-  description: "Monterial Constructions is a premier construction firm specializing in skyscrapers, infrastructure, and luxury residential projects. Explore our portfolio of innovative and sustainable building solutions.",
-  keywords: ["Construction", "Infrastructure", "Engineering", "Commercial Building", "Luxury Residential", "Sustainability"],
+  title: {
+    default: "Monterial Construction | Premium Engineering & Infrastructure",
+    template: "%s | Monterial Construction"
+  },
+  description: "Monterial Construction is a premier global firm specializing in skyscrapers, infrastructure, and luxury residential projects. Excellence in engineering since 2010.",
+  keywords: ["Construction", "Infrastructure", "Engineering", "Architecture", "Luxury Building", "Monterial"],
   authors: [{ name: "Monterial Group" }],
   robots: "index, follow",
-};
-
-export const viewport = {
-  width: "device-width",
-  initialScale: 1,
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://monterial-construction.com",
+    title: "Monterial Construction | Building the Future",
+    description: "Leading construction company delivering modern architectural and infrastructure projects.",
+    siteName: "Monterial Construction",
+    images: [{
+      url: "/og-image.jpg",
+      width: 1200,
+      height: 630,
+      alt: "Monterial Construction Portfolio"
+    }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Monterial Construction",
+    description: "Excellence in infrastructure and modern building solutions.",
+    images: ["/og-image.jpg"],
+  }
 };
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Monterial Constructions",
-  "url": "https://monterial-construction.com",
-  "logo": "https://monterial-construction.com/logo.png",
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "telephone": "+1234567890",
-    "contactType": "customer service",
-    "areaServed": "Global",
-    "availableLanguage": ["English", "Arabic"]
-  },
-  "sameAs": [
-    "https://facebook.com/monterial",
-    "https://linkedin.com/company/monterial"
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://monterial-construction.com/#organization",
+      "name": "Monterial Construction",
+      "url": "https://monterial-construction.com",
+      "logo": "https://monterial-construction.com/logo.webp",
+      "sameAs": [
+        "https://facebook.com/monterial",
+        "https://linkedin.com/company/monterial"
+      ]
+    },
+    {
+      "@type": "LocalBusiness",
+      "name": "Monterial Construction Head Office",
+      "image": "https://monterial-construction.com/construction_hero.png",
+      "@id": "https://monterial-construction.com/#localbusiness",
+      "url": "https://monterial-construction.com",
+      "telephone": "+1234567890",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Building B219, The Courtyard",
+        "addressLocality": "Sheikh Zayed",
+        "addressRegion": "Giza",
+        "addressCountry": "EG"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 30.0131,
+        "longitude": 30.9833
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Saturday", "Sunday"],
+        "opens": "09:00",
+        "closes": "17:00"
+      }
+    }
   ]
 };
 
@@ -124,9 +166,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
                   <ProjectProvider>
                     <Header />
 
-                    <main className="flex-grow">
-                      {children}
-                    </main>
+                    <SmoothScroll>
+                      <main className="flex-grow">
+                        {children}
+                      </main>
+                    </SmoothScroll>
 
                     <Footer />
                   </ProjectProvider>

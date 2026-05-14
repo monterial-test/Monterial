@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useLanguage } from "../../context/LanguageContext";
 import { SectionHeader } from "./SectionHeader";
 
+import ScrollReveal from "../ScrollReveal";
+
 export default function HomeServicesSection() {
   const { t } = useLanguage();
 
@@ -31,21 +33,22 @@ export default function HomeServicesSection() {
         {/* 2×2 Grid */}
         <div className="grid md:grid-cols-2 gap-4 md:gap-8">
           {services.map((svc, i) => (
-            <div
-              key={i}
-              className="bg-white dark:bg-slate-900 rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-10 flex flex-row items-center md:items-start gap-4 md:gap-8 shadow-xl border-2 border-slate-900/5 dark:border-white/5 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 group"
-            >
-              {/* Number Badge */}
-              <div className="w-12 h-12 md:w-16 md:h-16 bg-red-600 rounded-xl md:rounded-2xl flex items-center justify-center shrink-0 shadow-2xl shadow-red-600/40 group-hover:rotate-12 transition-transform duration-500">
-                <span className="text-white font-black text-lg md:text-2xl">{svc.id}</span>
+            <ScrollReveal key={i} delay={i * 0.1}>
+              <div
+                className="bg-white dark:bg-slate-900 rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-10 flex flex-row items-center md:items-start gap-4 md:gap-8 shadow-xl border-2 border-slate-900/5 dark:border-white/5 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 group h-full"
+              >
+                {/* Number Badge */}
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-red-600 rounded-xl md:rounded-2xl flex items-center justify-center shrink-0 shadow-2xl shadow-red-600/40 group-hover:rotate-12 transition-transform duration-500">
+                  <span className="text-white font-black text-lg md:text-2xl">{svc.id}</span>
+                </div>
+                {/* Text */}
+                <div className="pt-0 md:pt-2">
+                  <p className="text-base md:text-xl font-black text-slate-800 dark:text-white leading-tight group-hover:text-red-600 transition-colors">
+                    {t(svc.key)}
+                  </p>
+                </div>
               </div>
-              {/* Text */}
-              <div className="pt-0 md:pt-2">
-                <p className="text-base md:text-xl font-black text-slate-800 dark:text-white leading-tight group-hover:text-red-600 transition-colors">
-                  {t(svc.key)}
-                </p>
-              </div>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
 

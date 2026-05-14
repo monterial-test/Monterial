@@ -60,7 +60,7 @@ export default function AdminDashboard({ initiallyAuthenticated }: AdminDashboar
             <div className="min-h-screen bg-slate-950 flex items-center justify-center px-6">
                 <div className="max-w-md w-full bg-white/5 backdrop-blur-2xl p-12 rounded-[3.5rem] border border-white/10 shadow-2xl text-center space-y-8">
                     <div className="relative h-24 w-full mx-auto mb-4">
-                        <Image src="/Logo.png" alt="Logo" fill className="object-contain" priority />
+                        <Image src="/Logo.webp" alt="Logo" fill className="object-contain" priority />
                     </div>
                     <div className="space-y-2">
                         <h1 className="text-2xl font-black text-white italic uppercase tracking-tighter">Admin <span className="text-red-600">Access</span></h1>

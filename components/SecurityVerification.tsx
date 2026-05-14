@@ -44,7 +44,7 @@ export default function SecurityVerification({ children }: { children: React.Rea
                                 {/* Logo Decoration */}
                                 <div className="relative h-24 w-full mx-auto mb-4">
                                     <NextImage
-                                        src="/Logo.png"
+                                        src="/Logo.webp"
                                         alt="Monterial Constructions Logo"
                                         fill
                                         sizes="(max-width: 768px) 250px, 400px"
