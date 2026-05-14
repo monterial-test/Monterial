@@ -7,7 +7,7 @@ import { useLanguage } from "../context/LanguageContext";
 
 export default function Footer() {
     const { footerData } = useFooter();
-    const { t } = useLanguage();
+    const { t, language } = useLanguage();
 
     return (
         <footer 

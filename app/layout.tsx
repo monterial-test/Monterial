@@ -9,6 +9,7 @@ import Footer from "../components/Footer";
 import SecurityVerification from "../components/SecurityVerification";
 import ContentProtection from "../components/ContentProtection";
 import Header from "../components/Header";
+import SmoothScroll from "../components/SmoothScroll";
 import { ThemeProvider } from "../context/ThemeContext";
 import React from "react";
 import { Analytics } from "@vercel/analytics/react";
