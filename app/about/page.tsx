@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "../../context/LanguageContext";
 import { useFooter } from "../../context/FooterContext";
+import ScrollReveal from "../../components/ScrollReveal";
 
 export default function AboutPage() {
     const { t, language } = useLanguage();
