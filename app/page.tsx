@@ -75,9 +75,9 @@ export default function Home() {
 
         <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-20 text-center flex flex-col items-center pt-24 md:pt-32">
           <motion.div 
-            initial={{ opacity: 0, scale: 0.8, filter: "blur(10px)" }}
-            animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
             className="mb-8 md:mb-12"
           >
             <div className="relative w-[180px] md:w-[380px] aspect-square">
@@ -94,27 +94,27 @@ export default function Home() {
           </motion.div>
           
           <motion.h1 
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
             className="text-4xl sm:text-5xl md:text-8xl font-black text-white uppercase tracking-tighter mb-4 md:mb-8 leading-none"
           >
             Monterial <span className="text-brand-red">Construction</span>
           </motion.h1>
           
           <motion.p 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 0.8, y: 0 }}
-            transition={{ duration: 1, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
             className="text-slate-200 text-xs sm:text-sm md:text-xl max-w-2xl font-bold uppercase tracking-[0.3em] md:tracking-[0.6em] mb-12 md:mb-20"
           >
             {t("hero_subtitle")}
           </motion.p>
 
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1.1, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
             className="flex flex-col sm:flex-row gap-4 md:gap-10"
           >
             <Link 
