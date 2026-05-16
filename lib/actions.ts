@@ -104,7 +104,7 @@ export async function submitInquiry(formData: any) {
     return { success: true, id: res._id }
   } catch (error: any) {
     if (error instanceof z.ZodError) {
-      return { success: false, error: error.errors[0].message };
+      return { success: false, error: error.issues[0].message };
     }
     console.error('Submission error:', error)
     return { success: false, error: 'Failed to send message' }
