@@ -11,9 +11,13 @@ export default function Footer() {
 
     return (
         <footer 
-            className="bg-[#121212] text-white py-16 px-4 md:px-6 relative"
+            className="bg-slate-950 dark:bg-[#05080f] text-white py-16 px-4 md:px-6 relative border-t border-white/5 transition-colors duration-500"
             dir={t("rights_reserved").includes("جميع") ? "rtl" : "ltr"}
         >
+            {/* Subtle background accent */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-brand-red/5 dark:bg-brand-red/10 rounded-full blur-[100px]" />
+            </div>
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
                 {/* Column 1: About & Social */}
                 <div className="space-y-8">

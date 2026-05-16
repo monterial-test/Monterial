@@ -101,7 +101,7 @@ export default function ProjectGallery({ images, title }: ProjectGalleryProps) {
           
           <div className="relative w-full h-full flex items-center justify-center p-4 md:p-10">
             <Image
-              src={urlFor(images[selectedIndex]).url()}
+              src={urlFor(images[selectedIndex]).width(1920).format('webp').quality(85).url()}
               alt={title}
               fill
               className="object-contain animate-in zoom-in-95 duration-300"

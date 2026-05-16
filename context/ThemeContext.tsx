@@ -33,6 +33,19 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     }, [theme]);
 
     const toggleTheme = () => {
+        // Flash the screen on toggle for strong visual feedback
+        const flash = document.createElement("div");
+        flash.style.cssText = `
+            position:fixed; inset:0; z-index:99999; pointer-events:none;
+            background:${theme === "dark" ? "#ffffff" : "#020617"};
+            animation: theme-flash-anim 0.35s ease forwards;
+        `;
+        const style = document.createElement("style");
+        style.textContent = `@keyframes theme-flash-anim { 0%{opacity:0.18} 100%{opacity:0} }`;
+        document.head.appendChild(style);
+        document.body.appendChild(flash);
+        setTimeout(() => { flash.remove(); style.remove(); }, 360);
+
         setTheme((prev) => (prev === "light" ? "dark" : "light"));
     };
 

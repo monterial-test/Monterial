@@ -35,9 +35,9 @@ export default function SecurityVerification({ children }: { children: React.Rea
                         transition={{ duration: 0.8, ease: "easeInOut" }}
                         className="fixed inset-0 z-[9999] flex items-center justify-center bg-slate-950 px-6 overflow-hidden"
                     >
-                        {/* Animated Background Elements */}
-                        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-500/10 rounded-full filter blur-[120px] animate-pulse"></div>
-                        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full filter blur-[120px] animate-pulse delay-1000"></div>
+                        {/* Animated Background Elements - Reduced blur for mobile performance */}
+                        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-500/10 rounded-full filter blur-[60px] md:blur-[120px] animate-pulse"></div>
+                        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full filter blur-[60px] md:blur-[120px] animate-pulse delay-1000"></div>
 
                         <div className="relative z-10 max-w-md w-full">
                             <div className="bg-white/5 backdrop-blur-3xl border border-white/10 p-12 rounded-[3.5rem] shadow-2xl text-center space-y-8">

@@ -126,7 +126,7 @@ export default function AdminDashboard({ initiallyAuthenticated }: AdminDashboar
                         <h3 className="text-amber-600 dark:text-amber-500 font-bold uppercase text-xs tracking-widest mb-1">New CMS Integrated</h3>
                         <p className="text-sm text-slate-600 dark:text-slate-400">You can now manage projects with images and rich text via Sanity Studio.</p>
                     </div>
-                    <Link href="/admin/studio/" target="_blank" className="bg-red-600 text-white px-6 py-3 rounded-xl font-black text-[10px] uppercase tracking-tighter hover:scale-105 transition-transform shadow-lg">
+                    <Link href="/monterial-hq/studio/" target="_blank" className="bg-red-600 text-white px-6 py-3 rounded-xl font-black text-[10px] uppercase tracking-tighter hover:scale-105 transition-transform shadow-lg">
                         Open Sanity Studio 🚀
                     </Link>
                 </div>

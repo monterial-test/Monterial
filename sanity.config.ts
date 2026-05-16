@@ -10,7 +10,7 @@ export default defineConfig({
 
   projectId: 'dhtn8py6',
   dataset: 'production',
-  basePath: '/admin/studio',
+  basePath: '/monterial-hq/studio',
 
   plugins: [
     structureTool({

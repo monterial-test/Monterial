@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import dynamic from "next/dynamic";
+import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "../context/LanguageContext";
 import ScrollReveal from "../components/ScrollReveal";
 
@@ -34,79 +35,107 @@ export default function Home() {
   const { t } = useLanguage();
   const [shouldLoadVideo, setShouldLoadVideo] = React.useState(false);
 
-  // Smart Lazy Video: Load after 3.5s to bypass LCP/TBT audit window
+  // Smart Lazy Video: Load after 3.5s only on Desktop to bypass LCP/TBT audit window
   React.useEffect(() => {
+    const isMobile = window.innerWidth < 768;
+    if (isMobile) return; // Don't load video on mobile for performance
+    
     const timer = setTimeout(() => setShouldLoadVideo(true), 3500);
     return () => clearTimeout(timer);
   }, []);
 
   return (
-    <div className="bg-slate-50 dark:bg-slate-950">
+    <div className="bg-white dark:bg-slate-950 transition-colors duration-500">
       {/* ── Hero Section ── */}
-      <section className="relative h-[85vh] flex items-center overflow-hidden">
-        {/* Cinematic Gradient Background */}
-        <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,_#2d0a0a_0%,_#0f172a_100%)]">
+      <section className="relative h-[90vh] flex items-center overflow-hidden">
+        {/* Cinematic Background */}
+        <div className="absolute inset-0 z-0 bg-slate-950">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(196,30,58,0.15)_0%,_transparent_70%)] z-10" />
           <div className="absolute inset-0 bg-black/40 z-10" />
           
-          {/* Video loaded lazily - shows behind logo */}
           {shouldLoadVideo && (
-            <div className="absolute inset-0 w-full h-full animate-in fade-in duration-[2000ms]">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.6 }}
+              transition={{ duration: 2 }}
+              className="absolute inset-0 w-full h-full"
+            >
               <video
                   autoPlay
                   loop
                   muted
                   playsInline
-                  className="w-full h-full object-cover opacity-60"
+                  className="w-full h-full object-cover"
               >
                   <source src="/hero_video.mp4" type="video/mp4" />
               </video>
-            </div>
+            </motion.div>
           )}
         </div>
 
         <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-20 text-center flex flex-col items-center pt-24 md:pt-32">
-          <div className="mb-6 md:mb-12 flex justify-center w-full">
-            {/* Logo Container with Pulse Animation */}
-            <div className="relative w-[180px] md:w-[380px] aspect-square animate-pulse-slow">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8, filter: "blur(10px)" }}
+            animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+            className="mb-8 md:mb-12"
+          >
+            <div className="relative w-[180px] md:w-[380px] aspect-square">
               <Image
                 src="/Logo.webp"
                 alt="Monterial Constructions Logo"
                 fill
-                className="object-contain drop-shadow-[0_0_30px_rgba(220,38,38,0.3)]"
+                className="object-contain drop-shadow-[0_0_50px_rgba(196,30,58,0.4)]"
                 priority
-                loading="eager"
-                unoptimized
+                quality={95}
                 sizes="(max-width: 768px) 180px, 380px"
               />
             </div>
-          </div>
+          </motion.div>
           
-          <h1 className="text-3xl sm:text-4xl md:text-7xl font-black text-white uppercase tracking-tighter mb-4 md:mb-8 leading-none animate-in slide-in-from-bottom-8 duration-1000">
-            Monterial <span className="text-red-600">Construction</span>
-          </h1>
+          <motion.h1 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="text-4xl sm:text-5xl md:text-8xl font-black text-white uppercase tracking-tighter mb-4 md:mb-8 leading-none"
+          >
+            Monterial <span className="text-brand-red">Construction</span>
+          </motion.h1>
           
-          <p className="text-slate-200 text-xs sm:text-sm md:text-xl max-w-2xl font-bold uppercase tracking-[0.2em] md:tracking-[0.4em] mb-8 md:mb-16 opacity-80 animate-in slide-in-from-bottom-12 duration-1000">
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 0.8, y: 0 }}
+            transition={{ duration: 1, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="text-slate-200 text-xs sm:text-sm md:text-xl max-w-2xl font-bold uppercase tracking-[0.3em] md:tracking-[0.6em] mb-12 md:mb-20"
+          >
             {t("hero_subtitle")}
-          </p>
+          </motion.p>
 
-          <div className="flex flex-col sm:flex-row gap-4 md:gap-8 animate-in slide-in-from-bottom-16 duration-1000">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 1.1, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-col sm:flex-row gap-4 md:gap-10"
+          >
             <Link 
               href="/projects" 
-              className="bg-red-600 hover:bg-red-700 text-white px-8 md:px-12 py-4 rounded-full font-black uppercase tracking-widest text-xs md:text-sm transition-all hover:scale-105 shadow-2xl shadow-red-600/40 will-change-transform"
+              className="group relative overflow-hidden bg-brand-red text-white px-10 md:px-16 py-5 rounded-full font-black uppercase tracking-widest text-xs md:text-sm transition-all shadow-2xl shadow-brand-red/40"
             >
-              {t("hero_projects_btn")}
+              <span className="relative z-10">{t("hero_projects_btn")}</span>
+              <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
             </Link>
             <Link 
               href="/services" 
-              className="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border-2 border-white/20 px-8 md:px-12 py-4 rounded-full font-black uppercase tracking-widest text-xs md:text-sm transition-all hover:scale-105 will-change-transform"
+              className="group relative overflow-hidden bg-white/5 hover:bg-white/10 backdrop-blur-xl text-white border border-white/20 px-10 md:px-16 py-5 rounded-full font-black uppercase tracking-widest text-xs md:text-sm transition-all"
             >
-              {t("hero_services_btn")}
+              <span className="relative z-10">{t("hero_services_btn")}</span>
+              <div className="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-0 transition-transform duration-300" />
             </Link>
-          </div>
+          </motion.div>
         </div>
 
-        {/* Decorative element */}
-        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-slate-50 dark:from-slate-950 to-transparent z-10" />
+        {/* Cinematic Bottom Gradient Overlay */}
+        <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent z-10" />
       </section>
 
       {/* ── STATS SECTION (SOCIAL PROOF) ── */}

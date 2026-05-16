@@ -12,7 +12,7 @@ export default function HomeAboutSection() {
   const { t } = useLanguage();
 
   return (
-    <section className="bg-slate-950 py-16 md:py-32 px-4 md:px-6 relative overflow-hidden">
+    <section className="bg-slate-100 dark:bg-slate-950 py-16 md:py-32 px-4 md:px-6 relative overflow-hidden transition-colors duration-500">
       {/* Texture Overlay (CSS-based noise) */}
       <div
         className="absolute inset-0 opacity-[0.03] pointer-events-none bg-repeat"
@@ -45,7 +45,7 @@ export default function HomeAboutSection() {
             <ScrollReveal delay={0.3}>
               <div className="flex flex-col items-center">
                 <div className="w-12 md:w-16 h-1 bg-red-600 rounded-full mb-6 md:mb-8" />
-                <p className="text-slate-300 text-base sm:text-lg md:text-2xl leading-relaxed font-light mb-8 md:mb-12 italic">
+                <p className="text-slate-700 dark:text-slate-300 text-base sm:text-lg md:text-2xl leading-relaxed font-light mb-8 md:mb-12 italic">
                   "{t("home_about_text")}"
                 </p>
                 <Link

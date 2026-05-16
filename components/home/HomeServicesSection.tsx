@@ -19,8 +19,7 @@ export default function HomeServicesSection() {
 
   return (
     <section
-      className="py-16 md:py-32 px-4 md:px-6 relative overflow-hidden"
-      style={{ background: "linear-gradient(135deg, #f0f0f0 0%, #f0f0f0 40%, #c41e3a 100%)" }}
+      className="py-16 md:py-32 px-4 md:px-6 relative overflow-hidden bg-slate-50 dark:bg-slate-900"
     >
       {/* Decorative Background Elements */}
       <div className="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none">

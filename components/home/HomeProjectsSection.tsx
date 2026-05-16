@@ -39,7 +39,7 @@ export default function HomeProjectsSection() {
   const visibleProjects = getVisibleProjects();
 
   return (
-    <section className="bg-[#f0f0f0] dark:bg-slate-900/50 py-16 md:py-32 px-4 md:px-6 overflow-hidden">
+    <section className="bg-white dark:bg-slate-950 py-16 md:py-32 px-4 md:px-6 overflow-hidden">
       <div className="max-w-6xl mx-auto">
         <SectionHeader title={t("home_projects_title")} />
 

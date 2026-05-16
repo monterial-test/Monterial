@@ -5,6 +5,7 @@ import NextLink from "next/link";
 import NextImage from "next/image";
 import { useLanguage } from "../context/LanguageContext";
 import { useTheme } from "../context/ThemeContext";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Header() {
     const { language, setLanguage, t } = useLanguage();
@@ -31,10 +32,15 @@ export default function Header() {
 
     return (
         <header 
-            className="fixed top-4 md:top-6 left-0 right-0 z-50 px-4 md:px-8 pointer-events-none"
+            className="fixed top-4 md:top-8 left-0 right-0 z-50 px-4 md:px-12 pointer-events-none"
             dir={language === 'ar' ? 'rtl' : 'ltr'}
         >
-            <nav className="max-w-[1400px] mx-auto bg-white/95 dark:bg-slate-950/90 backdrop-blur-2xl border border-white/20 md:rounded-[100px] rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.1)] px-5 md:px-8 h-16 md:h-24 flex items-center justify-between pointer-events-auto transition-all duration-500 relative">
+            <motion.nav 
+                initial={{ y: -100, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                className="max-w-[1440px] mx-auto glass md:rounded-[100px] rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.1)] px-5 md:px-10 h-16 md:h-24 flex items-center justify-between pointer-events-auto transition-all duration-500 relative"
+            >
                 
                 {/* Logo */}
                 <NextLink href="/" className="relative h-10 md:h-20 w-32 md:w-[240px] flex-none transition-transform hover:scale-105 active:scale-95 shrink-0" onClick={() => setIsMobileMenuOpen(false)}>
@@ -45,8 +51,7 @@ export default function Header() {
                         sizes="(max-width: 768px) 128px, 240px"
                         className="object-contain"
                         priority
-                        unoptimized
-                        loading="eager"
+                        quality={90}
                     />
                 </NextLink>
 
@@ -58,9 +63,9 @@ export default function Header() {
                             <NextLink
                                 key={link.name}
                                 href={link.href}
-                                className={`px-4 lg:px-6 py-2 rounded-full text-[10px] lg:text-[11px] font-bold uppercase tracking-wider transition-all duration-300 border ${link.special
-                                    ? "border-red-600 text-red-600 hover:bg-red-600 hover:text-white"
-                                    : "border-slate-800 dark:border-white/30 text-slate-800 dark:text-white hover:bg-slate-800 hover:text-white dark:hover:bg-white dark:hover:text-black"
+                                className={`px-5 lg:px-7 py-2.5 rounded-full text-[10px] lg:text-[11px] font-black uppercase tracking-widest transition-all duration-300 border ${link.special
+                                    ? "bg-brand-red border-brand-red text-white hover:scale-105 shadow-lg shadow-brand-red/20"
+                                    : "border-slate-200 dark:border-white/10 text-slate-800 dark:text-white hover:bg-slate-900 hover:text-white dark:hover:bg-white dark:hover:text-black"
                                     }`}
                             >
                                 {link.name}
@@ -71,7 +76,7 @@ export default function Header() {
                         <button
                             onClick={toggleLanguage}
                             aria-label={language === "en" ? "Switch to Arabic" : "التغيير للغة الإنجليزية"}
-                            className="flex items-center gap-2 px-3 lg:px-6 py-2 rounded-full border border-slate-800 dark:border-white/30 text-slate-800 dark:text-white text-[10px] lg:text-[11px] font-bold uppercase tracking-wider hover:bg-slate-50 dark:hover:bg-white/5 transition-all"
+                            className="group flex items-center gap-2 px-4 lg:px-7 py-2.5 rounded-full border border-slate-200 dark:border-white/10 text-slate-800 dark:text-white text-[10px] lg:text-[11px] font-black uppercase tracking-widest hover:bg-slate-50 dark:hover:bg-white/5 transition-all"
                         >
                             {t("header_lang")}
                             <span className="text-[8px] transform transition-transform duration-300 group-hover:rotate-180">
@@ -79,21 +84,24 @@ export default function Header() {
                             </span>
                         </button>
 
-                        {/* Theme Toggle */}
+                        {/* Theme Toggle - enhanced */}
                         <button
                             onClick={toggleTheme}
-                            className="w-9 h-9 lg:w-10 lg:h-10 rounded-full border border-slate-800 dark:border-white/30 flex items-center justify-center text-slate-800 dark:text-white hover:bg-slate-50 dark:hover:bg-white/5 transition-all"
+                            className="relative w-10 h-10 lg:w-12 lg:h-12 rounded-full border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-800 dark:text-white hover:bg-slate-100 dark:hover:bg-white/10 transition-all duration-300 overflow-hidden group"
                             aria-label="Toggle Theme"
                         >
-                            {theme === "dark" ? "☀️" : "🌙"}
+                            <span className="absolute inset-0 bg-brand-red/0 group-hover:bg-brand-red/10 transition-all duration-300 rounded-full" />
+                            <span className="text-base relative z-10 transition-transform duration-500 group-hover:rotate-[360deg] inline-block">
+                                {theme === "dark" ? "☀️" : "🌙"}
+                            </span>
                         </button>
                     </div>
 
                     {/* Social Icons - Desktop */}
-                    <div className="flex items-center gap-2 lg:gap-3 shrink-0 border-l border-slate-200 dark:border-white/10 pl-4 lg:pl-8">
+                    <div className="flex items-center gap-2 lg:gap-4 shrink-0 border-l border-slate-200 dark:border-white/10 pl-4 lg:pl-8">
                         {socialIcons.map((social) => (
-                            <button key={social.name} aria-label={`Follow us on ${social.name}`} className="w-8 h-8 lg:w-11 lg:h-11 bg-red-600 text-white rounded-full flex items-center justify-center hover:scale-110 transition-all hover:bg-neutral-800 shadow-md">
-                                <svg width="14" height="14" className="lg:w-[18px] lg:h-[18px]" viewBox="0 0 24 24" fill="currentColor"><path d={social.path} /></svg>
+                            <button key={social.name} aria-label={`Follow us on ${social.name}`} className="w-9 h-9 lg:w-12 lg:h-12 bg-brand-red text-white rounded-full flex items-center justify-center hover:scale-110 transition-all hover:bg-slate-900 shadow-md">
+                                <svg width="16" height="16" className="lg:w-[20px] lg:h-[20px]" viewBox="0 0 24 24" fill="currentColor"><path d={social.path} /></svg>
                             </button>
                         ))}
                     </div>
@@ -104,62 +112,85 @@ export default function Header() {
                     <button
                         onClick={toggleLanguage}
                         aria-label={language === "en" ? "Switch to Arabic" : "التغيير للعربية"}
-                        className="w-8 h-8 rounded-full border border-slate-800 dark:border-white/30 flex items-center justify-center text-slate-800 dark:text-white text-[10px] font-bold uppercase"
+                        className="w-9 h-9 rounded-full border border-slate-200 dark:border-white/20 flex items-center justify-center text-slate-800 dark:text-white text-[10px] font-black uppercase"
                     >
                         {language === "en" ? "AR" : "EN"}
                     </button>
                     <button
                         onClick={toggleTheme}
-                        className="w-8 h-8 rounded-full border border-slate-800 dark:border-white/30 flex items-center justify-center text-slate-800 dark:text-white"
+                        className="relative w-9 h-9 rounded-full border border-slate-200 dark:border-white/20 flex items-center justify-center text-slate-800 dark:text-white overflow-hidden group"
                         aria-label="Toggle Theme"
                     >
-                        {theme === "dark" ? "☀️" : "🌙"}
+                        <span className="absolute inset-0 bg-brand-red/0 group-hover:bg-brand-red/10 transition-all duration-300 rounded-full" />
+                        <span className="relative z-10 transition-transform duration-500 group-hover:rotate-[360deg] inline-block">
+                            {theme === "dark" ? "☀️" : "🌙"}
+                        </span>
                     </button>
                     <button 
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                         aria-label="Toggle Mobile Menu"
-                        className="w-10 h-10 rounded-full bg-slate-100 dark:bg-white/10 flex items-center justify-center text-slate-800 dark:text-white ml-1"
+                        className="w-11 h-11 rounded-full bg-slate-100 dark:bg-white/10 flex items-center justify-center text-slate-800 dark:text-white ml-1"
                     >
                         {isMobileMenuOpen ? (
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                         ) : (
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
                         )}
                     </button>
                 </div>
 
-            </nav>
+            </motion.nav>
 
             {/* Mobile Menu Dropdown */}
-            {isMobileMenuOpen && (
-                <div className="lg:hidden absolute top-full left-4 right-4 mt-2 bg-white/95 dark:bg-slate-950/95 backdrop-blur-2xl border border-slate-200 dark:border-white/20 rounded-3xl shadow-2xl p-6 flex flex-col gap-4 pointer-events-auto origin-top animate-in fade-in slide-in-from-top-4 duration-300">
-                    <div className="flex flex-col gap-2">
-                        {navLinks.map((link) => (
-                            <NextLink
-                                key={link.name}
-                                href={link.href}
-                                onClick={() => setIsMobileMenuOpen(false)}
-                                className={`px-4 py-3 rounded-xl text-sm font-bold uppercase tracking-wider text-center transition-all ${link.special
-                                    ? "bg-red-600 text-white"
-                                    : "bg-slate-50 dark:bg-white/5 text-slate-800 dark:text-white"
-                                    }`}
-                            >
-                                {link.name}
-                            </NextLink>
-                        ))}
-                    </div>
+            <AnimatePresence>
+                {isMobileMenuOpen && (
+                    <motion.div 
+                        initial={{ opacity: 0, y: -20, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: -20, scale: 0.95 }}
+                        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                        className="lg:hidden absolute top-full left-4 right-4 mt-4 glass rounded-3xl shadow-2xl p-8 flex flex-col gap-6 pointer-events-auto overflow-hidden"
+                    >
+                        <div className="flex flex-col gap-3">
+                            {navLinks.map((link, i) => (
+                                <motion.div
+                                    key={link.name}
+                                    initial={{ opacity: 0, x: -20 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: i * 0.1 }}
+                                >
+                                    <NextLink
+                                        href={link.href}
+                                        onClick={() => setIsMobileMenuOpen(false)}
+                                        className={`block px-6 py-4 rounded-2xl text-sm font-black uppercase tracking-widest text-center transition-all ${link.special
+                                            ? "bg-brand-red text-white"
+                                            : "bg-slate-50 dark:bg-white/5 text-slate-800 dark:text-white"
+                                            }`}
+                                    >
+                                        {link.name}
+                                    </NextLink>
+                                </motion.div>
+                            ))}
+                        </div>
 
-                    <div className="h-px w-full bg-slate-200 dark:bg-white/10 my-2"></div>
+                        <div className="h-px w-full bg-slate-200 dark:bg-white/10"></div>
 
-                    <div className="flex justify-center gap-4">
-                        {socialIcons.map((social) => (
-                            <button key={social.name} className="w-12 h-12 bg-red-600 text-white rounded-full flex items-center justify-center hover:scale-110 transition-all shadow-md">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d={social.path} /></svg>
-                            </button>
-                        ))}
-                    </div>
-                </div>
-            )}
+                        <div className="flex justify-center gap-6">
+                            {socialIcons.map((social, i) => (
+                                <motion.button 
+                                    key={social.name} 
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.3 + (i * 0.1) }}
+                                    className="w-14 h-14 bg-brand-red text-white rounded-full flex items-center justify-center hover:scale-110 transition-all shadow-lg"
+                                >
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d={social.path} /></svg>
+                                </motion.button>
+                            ))}
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </header>
     );
 }

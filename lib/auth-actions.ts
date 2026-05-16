@@ -22,7 +22,7 @@ export async function verifyAdminPassword(password: string) {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
             sameSite: "strict",
-            maxAge: 7200, // 2 hours
+            maxAge: 3600, // 1 hour
             path: "/",
         });
 

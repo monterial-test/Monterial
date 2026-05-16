@@ -2,6 +2,9 @@
 
 import { createClient } from "@sanity/client";
 
+import { cookies } from "next/headers";
+import { verifyToken } from "./jwt";
+
 const client = createClient({
     projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "dhtn8py6",
     dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
@@ -11,9 +14,24 @@ const client = createClient({
 });
 
 /**
+ * Checks if the current request is authorized as admin
+ */
+async function checkAuth() {
+    const cookieStore = await cookies();
+    const token = cookieStore.get("admin_session")?.value;
+    if (!token) return false;
+    
+    const payload = await verifyToken(token);
+    return payload && payload.role === "admin";
+}
+
+/**
  * Updates the site settings document in Sanity
  */
 export async function updateSiteSettings(data: any) {
+    if (!(await checkAuth())) {
+        return { success: false, error: "Unauthorized" };
+    }
     try {
         // Fetch the existing settings document ID or assume 'settings'
         const result = await client
@@ -32,6 +50,9 @@ export async function updateSiteSettings(data: any) {
  * Uploads a file to Sanity and links it to the settings
  */
 export async function uploadCompanyProfile(file: File) {
+    if (!(await checkAuth())) {
+        return { success: false, error: "Unauthorized" };
+    }
     try {
         // 1. Upload asset to Sanity
         const asset = await client.assets.upload("file", file, {

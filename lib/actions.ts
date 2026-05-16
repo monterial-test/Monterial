@@ -1,21 +1,58 @@
 'use server'
 
 import { createClient } from '@sanity/client'
+import { z } from 'zod';
+import { headers } from 'next/headers';
 
 const client = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
   apiVersion: '2024-01-01',
   useCdn: false,
-  token: process.env.SANITY_WRITE_TOKEN, // Requires a token with write access
+  token: process.env.SANITY_WRITE_TOKEN,
 })
 
-export async function submitInquiry(formData: { name: string; email: string; type: string; message: string }) {
+// Simple in-memory rate limiter (per session/IP)
+const rateLimitMap = new Map<string, { count: number, lastRequest: number }>();
+const LIMIT = 5; // max 5 requests
+const WINDOW = 60 * 60 * 1000; // 1 hour window
+
+const inquirySchema = z.object({
+  name: z.string().min(2, "Name is too short").max(100),
+  email: z.string().email("Invalid email address"),
+  type: z.string(),
+  message: z.string().min(10, "Message is too short").max(2000),
+});
+
+export async function submitInquiry(formData: any) {
   try {
-    // 1. Save to Sanity
+    // 1. Rate Limiting Check
+    const headerList = await headers();
+    const ip = headerList.get('x-forwarded-for') || 'anonymous';
+    const now = Date.now();
+    const userLimit = rateLimitMap.get(ip);
+
+    if (userLimit) {
+      if (now - userLimit.lastRequest < WINDOW) {
+        if (userLimit.count >= LIMIT) {
+          return { success: false, error: "Too many requests. Please try again later." };
+        }
+        userLimit.count++;
+      } else {
+        userLimit.count = 1;
+        userLimit.lastRequest = now;
+      }
+    } else {
+      rateLimitMap.set(ip, { count: 1, lastRequest: now });
+    }
+
+    // 2. Input Validation
+    const validatedData = inquirySchema.parse(formData);
+
+    // 3. Save to Sanity
     const res = await client.create({
       _type: 'inquiry',
-      ...formData,
+      ...validatedData,
       status: 'new',
     })
 
@@ -65,7 +102,10 @@ export async function submitInquiry(formData: { name: string; email: string; typ
     }
 
     return { success: true, id: res._id }
-  } catch (error) {
+  } catch (error: any) {
+    if (error instanceof z.ZodError) {
+      return { success: false, error: error.errors[0].message };
+    }
     console.error('Submission error:', error)
     return { success: false, error: 'Failed to send message' }
   }
