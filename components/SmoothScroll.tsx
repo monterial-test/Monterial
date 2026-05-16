@@ -13,7 +13,6 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
             smoothWheel: true,
             wheelMultiplier: 1.0,
             touchMultiplier: 2.0,
-            smoothTouch: false, // Use native touch scrolling for best mobile performance
             infinite: false,
         });
 
